@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 
 export default function Appointment(props) {
@@ -17,11 +18,12 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW: EMPTY
   )
 
-  console.log("index props: ", props)
 
   function save(name, interviewer) {
     const interview = {
@@ -33,14 +35,21 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW)
     })
+    .catch((err) => {
+      transition(ERROR_SAVE, true)
+    })
     
   }
 
   function deleteInterview() {
-    transition(DELETING)
+
+    transition(DELETING, true)
     props.cancelInterview(props.id)
     .then(() => {
       transition(EMPTY)
+    })
+    .catch((err) => {
+      transition(ERROR_DELETE, true)
     })
   }
   
@@ -80,6 +89,16 @@ export default function Appointment(props) {
         onCancel={() => back()}
         onConfirm={deleteInterview}
         message="Are you sure you would like to delete this interview?"
+      />}
+
+      {mode === ERROR_SAVE && <Error
+        message="You encountered an error saving."
+        onClose={() => back()}
+      />}
+
+      {mode === ERROR_DELETE && <Error
+        message="You encountered an error deleting."
+        onClose={() => back()}
       />}
     </div>
   )

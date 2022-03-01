@@ -7,13 +7,12 @@ export function getInterview(state, interviewObject) {
   if (interviewObject === null) {
     return null
   }
+  console.log("interviewObject: ", interviewObject)
 
   let interviewerID = interviewObject.interviewer
   let interviewer = state.interviewers[interviewerID]
   
-  interviewObject.interviewer = interviewer
-
-  return interviewObject
+  return {...interviewObject, interviewer}
   
 }
 

@@ -15,7 +15,6 @@ export function getInterview(state, interviewObject) {
   
 }
 
-
 export function getAppointmentsForDay(state, day) {
   let appts = []
   const apptsList = []

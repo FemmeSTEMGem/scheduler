@@ -1,6 +1,7 @@
 import React from "react";
 import "components/InterviewerList.scss"
 import InterviewerListItem from "./InterviewerListItem";
+import PropTypes from 'prop-types';
 
 export default function InterviewerList(props) {
   const parsedInterviewers = props.interviewers.map((person) => (
@@ -21,4 +22,6 @@ export default function InterviewerList(props) {
   )
 }
 
-// changing: <li onClick={() => props.setInterviewer(props.id)} className={interviewerClass}>
+InterviewerList.propTypes = {
+  parsedInterviewers: PropTypes.array.isRequired
+};

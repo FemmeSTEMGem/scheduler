@@ -15,16 +15,7 @@ export default function useApplicationData(props) {
 
   const setDay = day => setState({ ...state, day });
 
-  // function updateSpots() {
-  //   axios.get("/api/days")
-  //     .then((res) => {
-  //       const days = res.data
-  //       setState((prev) => ({...prev, days}))
-  //     })
-  // }
-
   function updateSpots(newAppointments) {
-    //state.days --> iterate over 
     return state.days.map((eachDay) => {
       let freeSpots = 0
       
@@ -35,7 +26,6 @@ export default function useApplicationData(props) {
       }
       return {...eachDay, spots: freeSpots}
     })
-
   }
 
   function bookInterview(id, interview) {
@@ -43,7 +33,6 @@ export default function useApplicationData(props) {
       ...state.appointments[id],
       interview: { ...interview }
     }
-    //interview contains the name of the interviewer and the student
 
     const appointments = {
       ...state.appointments,
@@ -67,7 +56,6 @@ export default function useApplicationData(props) {
       ...state.appointments[id],
       interview: null
     }
-    //interview contains the name of the interviewer and the student
 
     const appointments = {
       ...state.appointments,

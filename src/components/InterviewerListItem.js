@@ -19,5 +19,3 @@ export default function InterviewerListItem(props) {
     </li>
   )
 }
-
-// changing: <li onClick={() => props.setInterviewer(props.id)} className={interviewerClass}>

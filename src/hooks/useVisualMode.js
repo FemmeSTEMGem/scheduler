@@ -14,6 +14,7 @@ export default  function useVisualMode(initial) {
     }
   }
 
+
   const back = () => {
     const historyCopy = [...history]
     
@@ -24,13 +25,5 @@ export default  function useVisualMode(initial) {
     setHistory(historyCopy)
     setMode(historyCopy[historyCopy.length -1])
   }
-
   return {mode, transition, back}
 }
-
-
-
-// [1, 2, 3, 4]
-
-// When transition is called, we need to add the new mode to our history.
-// When back is called, we should set the mode to the previous item in our history array.
